@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="160dp" />
+
+    <EditText
+        android:id="@+id/userInputHeight"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="12dp"
+        android:background="#2E4980"
+        android:backgroundTint="#2E4980"
+        android:ems="10"
+        android:hint="1.71"
+        android:inputType="numberDecimal"
+        android:outlineProvider="none"
+        android:padding="4dp"
+        android:textColor="#eee"
+        android:textColorHint="#9FEEEEEE"
+        app:layout_constraintBottom_toBottomOf="@+id/labelForUserInputHeight"
+        app:layout_constraintEnd_toStartOf="@+id/userInputHeightComplement"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/labelForUserInputHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Altura:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/userInputHeight"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Altura:" />
+
+    <TextView
+        android:id="@+id/labelForUserInputWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="sans-serif-black"
+        android:rotationX="0"
+        android:text="Peso:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/userInputWeight"
+        app:layout_constraintTop_toBottomOf="@+id/labelForUserInputHeight"
+        tools:text="Peso:" />
+
+    <EditText
+        android:id="@+id/userInputWeight"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="12dp"
+        android:background="#2E4980"
+        android:backgroundTint="#2E4980"
+        android:ems="10"
+        android:hint="83.5"
+        android:inputType="numberDecimal"
+        android:padding="4dp"
+        android:textColor="#eee"
+        android:textColorHint="#9FEEEEEE"
+        app:layout_constraintBottom_toBottomOf="@+id/labelForUserInputWeight"
+        app:layout_constraintEnd_toStartOf="@+id/userInputWeightComplement"
+        app:layout_constraintTop_toBottomOf="@+id/userInputHeight"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btnFnCalculateIMC"
+        android:layout_width="280dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#2E4980"
+        android:fontFamily="sans-serif-medium"
+        android:text="Calcular"
+        android:textColor="#eee"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelForUserInputWeight"
+        tools:text="Calcular" />
+
+    <TextView
+        android:id="@+id/userInputHeightComplement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Metros"
+        app:layout_constraintBottom_toBottomOf="@+id/userInputHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/userInputHeight"
+        app:layout_constraintVertical_bias="0.555"
+        tools:text="Metros" />
+
+    <TextView
+        android:id="@+id/userInputWeightComplement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Kg"
+        app:layout_constraintBottom_toBottomOf="@+id/userInputWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/userInputWeight"
+        app:layout_constraintVertical_bias="0.555"
+        tools:text="Kg" />
+
+    <TextView
+        android:id="@+id/labelForIMCResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Seu IMC:"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFnCalculateIMC"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textIMCResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-black"
+        android:text="ResultHere"
+        android:textColor="#2E4980"
+        android:textSize="32sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelForIMCResult"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textIMCSituation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="TextView"
+        android:textColor="#2E4980"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textIMCResult"
+        app:layout_constraintVertical_bias="0.137"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
