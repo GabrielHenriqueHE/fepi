@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666201306240",
+    "project_id": "street-control-27339",
+    "storage_bucket": "street-control-27339.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666201306240:android:c859bc10cf3479ea136265",
+        "android_client_info": {
+          "package_name": "io.github.gabrielhenriquehe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn9r-_Ypvp6D-SZULYQJVieDVY86Iwxbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
