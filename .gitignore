@@ -1,0 +1,41 @@
+# Ignorar o ambiente virtual (pasta padrão do virtualenv)
+venv/
+.env/
+*.env
+
+# Ignorar arquivos de cache do Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar o banco de dados SQLite (caso esteja usando)
+*.sqlite3
+
+# Ignorar arquivos de configuração do Pytest
+.cache/
+pytest_cache/
+
+# Ignorar arquivos do sistema operacional (Ex: MacOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de dependências do Python
+Pipfile.lock
+pip-log.txt
+*.egg-info/
+
+# Ignorar arquivos de testes temporários
+*.bak
+*.swp
+*.swo
+
+# Ignorar resultados de testes temporários
+*.cover
+.coverage
+.coverage.*
+nosetests.xml
+test-*.xml
+*.mocha
