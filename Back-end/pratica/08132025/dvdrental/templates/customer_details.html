@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<body>
+    <h2>Detalhes para {{ customer_name }}</h2>
+
+    <p>Voltar para <a href="/customers">Customers</a></p>
+
+    <table border="1">
+        <tr>
+            <th>inventory_id</th>
+            <th>rental_date</th>
+        </tr>
+        {% for detail in details %}
+        <tr>
+            <td>{{ detail.inventory_id }}</td>
+            <td>{{ detail.rental_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
