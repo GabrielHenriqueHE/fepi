@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-</head> 
-<body>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
     <h1>Cidades de {{ country.country }}</h1>
 
     <p>Voltar para <a href="/countries">Countries</a></p>
 
     <ul>
       {% for city in cities %}
-        <li>{{ city.city }}</li>
+        <li><a href="/cities/{{ city.city_id }}/edit">{{ city.city }}</a></li>
       {% endfor %}
     </ul>
-</body>
+  </body>
 </html>

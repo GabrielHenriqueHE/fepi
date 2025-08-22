@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar cliente</title>
+</head>
+<body>
+    <h1>Edição de cliente</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="first_name">Primeiro nome: </label>
+        <input type="text" id="first_name" name="first_name" value="{{ customer.first_name }}">
+        <label for="last_name">Último nome: </label>
+        <input type="text" id="last_name" name="last_name", value="{{ customer.last_name }}">
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" value="{{ customer.email }}">
+
+        <input type="submit", value="Salvar alterações">
+    </form>
+</body>
+</html>

@@ -5,7 +5,7 @@
 
     <ul>
       {% for customer in customers %}
-      <li><a href="details/{{ customer.customer_id }}">{{ customer.first_name }} {{ customer.last_name }}</a></li>
+      <li><a href="{{ customer.customer_id }}">{{ customer.first_name }} {{ customer.last_name }}</a></li>
       {% endfor %}
     </ul>
   </body>
