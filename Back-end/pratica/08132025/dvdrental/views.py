@@ -1,8 +1,9 @@
+from django.utils import timezone
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, redirect, render
 
-from dvdrental.models import Customer, City, Rental, Country
+from dvdrental.models import Customer, City, Rental, Country, Category
 
 def customers(request):
     customers = Customer.objects.all().values()
@@ -76,3 +77,27 @@ def edit_city(request, id):
         
         return redirect('/cities')
     return render(request, 'edit_city.html', {'city': city})
+
+def list_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'categories_list.html', {'categories': categories})
+
+def add_category(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+        category = Category(name=name, last_update=timezone.now())
+        category.save()
+
+        return redirect('/categories')
+    return render(request, 'add_category.html')
+
+def add_country(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+        country = Country(country=name, last_update=timezone.now())
+        country.save()
+
+        return redirect('/countries')
+    return render(request, 'add_country.html')

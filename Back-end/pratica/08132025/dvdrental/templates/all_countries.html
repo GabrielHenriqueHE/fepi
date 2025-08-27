@@ -6,6 +6,7 @@
 <body>
     <h1>Países</h1>
 
+    <a href="{% url 'add_country' %}">Adicionar país</a>
     <ul>
       {% for country in countries %}
         <li><a href="countries/{{ country.country_id }}">{{ country.country }}</a></li>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listagem de categorias</title>
+  </head>
+  <body>
+    <h1>Listagem de categorias</h1>
+
+    <ul>
+      {% for category in categories %}
+      <li>{{ category.name }}</li>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'add_category' %}">Adicionar nova categoria</a>
+  </body>
+</html>
