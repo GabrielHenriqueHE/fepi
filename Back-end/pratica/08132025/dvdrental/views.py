@@ -101,3 +101,25 @@ def add_country(request):
 
         return redirect('/countries')
     return render(request, 'add_country.html')
+
+def filtered_customers(request):
+    #customers = Customer.objects.filter(first_name__contains='Karen')
+    #customers = Customer.objects.filter(first_name__contains='Karen').values()
+    #customers = Customer.objects.filter(last_name__icontains='mill').values()
+    #customers = Customer.objects.filter(first_name__endswith='s').values()
+    #customers = Customer.objects.filter(first_name__iendswith='s').values()
+    #customers = Customer.objects.filter(first_name__exact='Phyllis').values()
+    #customers = Customer.objects.filter(first_name__iexact='phyllis').values()
+    #customers = Customer.objects.filter(first_name__in=['Karen', 'Dennis', 'Nicholas']).values()
+    #customers = Customer.objects.filter(customer_id__gt=500).values()
+    #customers = Customer.objects.filter(customer_id__gte=500).values()
+    #customers = Customer.objects.filter(customer_id__lt=15).values()
+    customers = Customer.objects.filter(customer_id__lte=15).values()
+    
+
+    template = loader.get_template('filtered_customers.html')
+    context = {
+        'customers': customers
+    }
+
+    return HttpResponse(template.render(context=context, request=request))
