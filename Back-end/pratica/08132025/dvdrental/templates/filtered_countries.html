@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Filtered countries</h1>
+
+    <form action="{% url 'filtered_countries' %}" method="get">
+        <label for="search_name">Procura pelo country:</label>
+        <input type="text" name="search_name" id="search_name">
+        <input type="submit" value="Buscar">
+    </form>
+
+    <ul>
+      {% for country in countries %}
+      <li><a href="{{ country.country_id }}">{{ country.country_id }} - {{ country.country }}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

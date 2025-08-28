@@ -142,13 +142,27 @@ def filtered_customers(request):
     search_name = request.GET.get('search_name', '')
 
     customers = (
-        Customer.objects.filter(first_name__icontains=search_name) 
-        if search_name 
+        Customer.objects.filter(first_name__icontains=search_name) if search_name 
         else Customer.objects.values())   
 
     template = loader.get_template('filtered_customers.html')
     context = {
         'customers': customers
+    }
+
+    return HttpResponse(template.render(context=context, request=request))
+
+def filtered_countries(request):
+    search_name = request.GET.get('search_name', '')
+
+    countries = (
+        Country.objects.filter(country__icontains=search_name).values() if search_name
+        else Country.objects.values()
+    )
+
+    template = loader.get_template('filtered_countries.html')
+    context = {
+        'countries': countries
     }
 
     return HttpResponse(template.render(context=context, request=request))

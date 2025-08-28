@@ -10,6 +10,7 @@ urlpatterns = [
     path('cities/', views.cities, name='cities'),
     path('cities/<int:id>/edit', views.edit_city, name='edit_city'),
     path('countries', views.countries, name='countries'),
+    path('countries/filtered', views.filtered_countries, name='filtered_countries'),
     path('countries/add', views.add_country, name='add_country'),
     path('countries/<int:id>', views.country_cities, name='country_cities'),
     path('categories/', views.list_categories, name='list_categories'),
