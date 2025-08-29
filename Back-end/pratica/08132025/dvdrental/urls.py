@@ -14,6 +14,6 @@ urlpatterns = [
     path('countries/filtered', views.filtered_countries, name='filtered_countries'),
     path('countries/add', views.add_country, name='add_country'),
     path('countries/<int:id>', views.country_cities, name='country_cities'),
-    path('categories/', views.list_categories, name='list_categories'),
-    path('categories/add', views.add_category, name='add_category')
+    path('categories/', views.list_categories, name='categories'),
+    path('categories/form', views.category_form, name='categories_form')
 ]
