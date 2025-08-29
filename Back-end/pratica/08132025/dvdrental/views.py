@@ -4,6 +4,7 @@ from django.template import loader
 from django.shortcuts import get_object_or_404, redirect, render
 
 from dvdrental.models import Customer, City, Rental, Country, Category
+from dvdrental.forms import CustomerForm
 
 def customers(request):
     customers = Customer.objects.all().values()
@@ -166,3 +167,16 @@ def filtered_countries(request):
     }
 
     return HttpResponse(template.render(context=context, request=request))
+
+def customer_form(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        form.save()
+        return redirect('customers')
+
+    template = loader.get_template('customers_form.html')
+    context = {
+        'form': CustomerForm()
+    }
+
+    return HttpResponse(template.render(request=request, context=context))
