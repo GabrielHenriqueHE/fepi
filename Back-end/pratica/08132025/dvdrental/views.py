@@ -184,6 +184,8 @@ def customer_form(request):
 def category_form(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
+        form.instance.last_update = timezone.now()
+
         form.save()
         return redirect('categories')
     
