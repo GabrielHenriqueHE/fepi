@@ -63,7 +63,7 @@ def edit_customer(request, id):
         form = CustomerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
-            return redirect('all_customers')
+            return redirect('customers')
         
     else:
         form = CustomerForm(instance=customer)
