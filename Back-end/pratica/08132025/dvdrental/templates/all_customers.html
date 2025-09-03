@@ -7,6 +7,29 @@
   <body>
     <h1>Customers</h1>
 
+    <a href="{% url 'add_customers' %}">Adicionar cliente</a>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Customer ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for customer in customers %}
+        <tr>
+          <td data-label="id">{{ customer.customer_id }}</td>
+          <td data-label="first_name">{{ customer.first_name }}</td>
+          <td data-label="last_name">{{ customer.last_name }}</td>
+          <td><a href="{% url 'edit_customer' customer.customer_id %}"><button>Edit</button></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
     <ul>
       {% for customer in customers %}
       <li><a href="{{ customer.customer_id }}">{{ customer.first_name }} {{ customer.last_name }}</a></li>

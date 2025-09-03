@@ -59,15 +59,20 @@ def country_cities(request, id):
 
 def edit_customer(request, id):
     customer = get_object_or_404(Customer, pk=id)
-    if (request.method) == 'POST':
-        customer.first_name = request.POST.get('first_name')
-        customer.last_name = request.POST.get('last_name')
-        customer.email = request.POST.get('email')
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('all_customers')
+        
+    else:
+        form = CustomerForm(instance=customer)
 
-        customer.save()
+    context = {
+        'form': form
+    }
 
-        return redirect('/customers')
-    return render(request, 'edit_customer.html', {'customer': customer})
+    return render(request, 'edit_customer.html', context=context)
 
 def edit_city(request, id):
     city = get_object_or_404(City, pk=id)
@@ -168,7 +173,7 @@ def filtered_countries(request):
 
     return HttpResponse(template.render(context=context, request=request))
 
-def customer_form(request):
+def add_customer(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
         form.save()

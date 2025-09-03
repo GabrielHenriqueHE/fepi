@@ -8,12 +8,11 @@
     <h2>Detalhes para {{ customer_name }}</h2>
 
     <p>Voltar para <a href="/customers">Customers</a></p>
-    <a href="{{ customer_id }}/edit">Editar</a>
 
     <table>
       <tr>
-        <th>inventory_id</th>
-        <th>rental_date</th>
+        <th>Inventory ID</th>
+        <th>Rental date</th>
       </tr>
       {% for detail in details %}
       <tr>

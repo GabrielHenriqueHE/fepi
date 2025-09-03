@@ -18,3 +18,10 @@ class CategoryForm(forms.ModelForm):
     #     super().__init__(*args, **kwargs)
         
     #     self.fields['last_update'].initial = timezone.now()
+
+class CustomerForm(forms.ModelForm):
+
+    class Meta:
+        model = Customer
+        fields = ['first_name', 'last_name', 'email', 'address', 'activebool', 'store_id', 'create_date']
+    
