@@ -1,19 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Listagem de categorias</title>
   </head>
   <body>
     <h1>Listagem de categorias</h1>
 
-    <ul>
-      {% for category in categories %}
-      <li>{{ category.name }}</li>
-      {% endfor %}
-    </ul>
+    <a href="{% url 'add_category' %}">Adicionar nova categoria</a>
 
-    <a href="{% url 'categories_form' %}">Adicionar nova categoria</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Category ID</th>
+          <th>Name</th>
+          <th>Last update</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+        <tr>
+          <td data-label="id">{{ category.category_id }}</td>
+          <td data-label="name">{{ category.name }}</td>
+          <td data-label="last_update">{{ category.last_update }}</td>
+          <td><a href="{% url 'edit_category' category.category_id %}"><button>Edit</button></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
   </body>
 </html>

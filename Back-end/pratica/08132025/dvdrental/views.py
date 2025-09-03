@@ -186,7 +186,7 @@ def add_customer(request):
 
     return HttpResponse(template.render(request=request, context=context))
 
-def category_form(request):
+def add_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         form.instance.last_update = timezone.now()
@@ -194,9 +194,26 @@ def category_form(request):
         form.save()
         return redirect('categories')
     
-    template = loader.get_template('categories_form.html')
+    template = loader.get_template('add_category.html')
     context = {
         'form': CategoryForm()
     }
 
     return HttpResponse(template.render(request=request, context=context))
+
+def edit_category(request, id):
+    category = get_object_or_404(Category, pk=id)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('categories')
+        
+    else:
+        form = CategoryForm(instance=category)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'edit_category.html', context=context)
