@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('customers/', views.customers, name='customers'),
+    path('customers/json/<int:number>', views.customers_json, name='customers_json'),
     path('customers/add', views.add_customer, name='add_customers'),
     path('customers/filtered', views.filtered_customers, name='filtered_customers'),
     path('customers/<int:id>', views.details, name='details'),

@@ -1,5 +1,7 @@
+import json
+
 from django.utils import timezone
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -217,3 +219,12 @@ def edit_category(request, id):
     }
 
     return render(request, 'edit_category.html', context=context)
+
+def customers_json(request, number):
+    customers = list(Customer.objects.values()[0:number])
+
+    payload = {
+        "customers": customers
+    }
+
+    return JsonResponse(data=payload, safe=False)
