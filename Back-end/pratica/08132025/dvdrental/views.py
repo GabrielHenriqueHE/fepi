@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, redirect, render
 
-from dvdrental.models import Customer, City, Rental, Country, Category
+from dvdrental.models import Customer, City, Rental, Country, Category, Payment
 from dvdrental.forms import CustomerForm, CategoryForm
 
 def customers(request):
@@ -25,12 +25,13 @@ def cities(request):
     return HttpResponse(template.render(context=context, request=request))
 
 def details(request, id):
-    details = Rental.objects.filter(customer_id=id)
+    rentals = Rental.objects.filter(customer_id=id)
     customer = get_object_or_404(Customer, pk=id)
 
     template = loader.get_template('customer_details.html')
     context = {
-        'details': details,
+        'rentals': rentals,
+        'customer': customer,
         'customer_name': f"{customer.first_name} {customer.last_name}",
         'customer_id': customer.customer_id
     }
@@ -228,3 +229,28 @@ def customers_json(request, number):
     }
 
     return JsonResponse(data=payload, safe=False)
+
+def home(request):
+    template = loader.get_template("home.html")
+
+    return HttpResponse(template.render(request=request))
+
+def rental_details(request, id):
+    rental = get_object_or_404(Rental, pk=id)
+    customer = Customer.objects.filter(customer_id=rental.customer_id).first()
+
+    payments = Payment.objects.filter(rental_id=rental.rental_id)
+
+    context = {
+        "customer": {
+            "name": f"{customer.first_name} {customer.last_name}",
+            "object": customer
+        },
+        "rental": rental,
+        "payments": payments
+    }
+
+
+    template = loader.get_template("rental_details.html")
+
+    return HttpResponse(template.render(request=request, context=context))

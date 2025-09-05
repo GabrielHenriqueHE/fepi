@@ -5,19 +5,32 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <h2>Detalhes para {{ customer_name }}</h2>
+    <h1>Detalhes para {{ customer_name }}</h1>
 
     <p>Voltar para <a href="/customers">Customers</a></p>
 
+    <h2>Detalhes</h2>
+    <ul>
+      <li>ID: {{ customer.customer_id }}</li>
+      <li>Primeiro nome: {{ customer.first_name }}</li>
+      <li>Último nome: {{ customer.last_name }}</li>
+    </ul>
+
+    <h3>Aluguéis</h3>
+
     <table>
       <tr>
-        <th>Inventory ID</th>
+        <th>Rental ID</th>
         <th>Rental date</th>
+        <th>Inventory ID</th>
+        <th>Actions</th>
       </tr>
-      {% for detail in details %}
+      {% for rental in rentals %}
       <tr>
-        <td>{{ detail.inventory_id }}</td>
-        <td>{{ detail.rental_date }}</td>
+        <td>{{ rental.rental_id }}</td>
+        <td>{{ rental.rental_date }}</td>
+        <td>{{ rental.inventory_id }}</td>
+        <td><a href="{% url 'rental_details' rental.rental_id %}"><button>View payment details</button></a></td>
       </tr>
       {% endfor %}
     </table>

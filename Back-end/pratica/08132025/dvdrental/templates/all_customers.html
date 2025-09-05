@@ -7,7 +7,7 @@
   <body>
     <h1>Customers</h1>
 
-    <a href="{% url 'add_customers' %}">Adicionar cliente</a>
+    <p><a href="{% url 'add_customers' %}">Adicionar cliente</a></p>
 
     <table>
       <thead>
@@ -24,7 +24,10 @@
           <td data-label="id">{{ customer.customer_id }}</td>
           <td data-label="first_name">{{ customer.first_name }}</td>
           <td data-label="last_name">{{ customer.last_name }}</td>
-          <td><a href="{% url 'edit_customer' customer.customer_id %}"><button>Edit</button></a></td>
+          <td>
+            <a href="{% url 'edit_customer' customer.customer_id %}"><button>Edit</button></a>
+            <a href="{% url 'details' customer.customer_id %}"><button>View details</button></a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
