@@ -19,5 +19,7 @@ urlpatterns = [
     path('categories/', views.list_categories, name='categories'),
     path('categories/add', views.add_category, name='add_category'),
     path('categories/<int:id>/edit', views.edit_category, name='edit_category'),
-    path('rentals/<int:id>', views.rental_details, name='rental_details')
+    path('rentals/<int:id>', views.rental_details, name='rental_details'),
+    path('rentals/<int:id>/json', views.rental_details_json, name='rental_details_json'),
+    path('payment/<int:id>', views.payment, name='payment'),
 ]

@@ -254,3 +254,27 @@ def rental_details(request, id):
     template = loader.get_template("rental_details.html")
 
     return HttpResponse(template.render(request=request, context=context))
+
+def rental_details_json(request, id):
+    rentals = Rental.objects.filter(customer_id=id)
+    customer = get_object_or_404(Customer, pk=id)
+    template = loader.get_template('rental_modal_content.html')
+
+    context = {
+        "rentals": rentals,
+        "customer_name": f"{customer.first_name} {customer.last_name}"
+    }
+
+    rendered_context = template.render(request=request, context=context)
+    return JsonResponse({
+        "html": rendered_context
+    })
+
+def payment(request, id):
+    payments = Payment.objects.filter(rental_id=id)
+    template = loader.get_template('payment.html')
+    context = {
+        "payments": payments
+    }
+
+    return HttpResponse(template.render(request=request, context=context))
