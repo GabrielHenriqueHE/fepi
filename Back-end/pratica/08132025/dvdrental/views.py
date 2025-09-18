@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, redirect, render
 
-from dvdrental.models import Customer, City, Rental, Country, Category, Payment
+from dvdrental.models import Address, Customer, City, Rental, Country, Category, Payment
 from dvdrental.forms import CustomerForm, CategoryForm
 
 def customers(request):
@@ -39,12 +39,14 @@ def details(request, id):
     return HttpResponse(template.render(context=context, request=request))
 
 def countries(request):
-    countries = Country.objects.all().values()
+    # countries = Country.objects.all().values()
 
-    template = loader.get_template('all_countries.html')
-    context = {
-        'countries': countries
-    }
+    # template = loader.get_template('all_countries.html')
+    # context = {
+    #     'countries': countries
+    # }
+
+    return redirect('home')
 
     return HttpResponse(template.render(context=context, request=request))
 
@@ -230,11 +232,6 @@ def customers_json(request, number):
 
     return JsonResponse(data=payload, safe=False)
 
-def home(request):
-    template = loader.get_template("home.html")
-
-    return HttpResponse(template.render(request=request))
-
 def rental_details(request, id):
     rental = get_object_or_404(Rental, pk=id)
     customer = Customer.objects.filter(customer_id=rental.customer_id).first()
@@ -276,5 +273,30 @@ def payment(request, id):
     context = {
         "payments": payments
     }
+
+    return HttpResponse(template.render(request=request, context=context))
+
+
+def home(request):
+    countries = Country.objects.all()
+
+    context = {
+        "countries": countries
+    }
+    
+    template = loader.get_template("home.html")
+
+    return HttpResponse(template.render(request=request, context=context))
+
+def city_addresses(request, id):
+    city = get_object_or_404(City, pk=id)
+
+    addresses = Address.objects.filter(city_id=city.city_id)
+
+    context = {
+        "addresses": addresses
+    }
+
+    template = loader.get_template("city_addresses.html")
 
     return HttpResponse(template.render(request=request, context=context))

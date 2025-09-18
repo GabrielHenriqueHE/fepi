@@ -11,5 +11,29 @@
     <ul>
         <li><a href="{% url 'customers' %}">Customers</a></li>
     </ul>
+    <h1>Parte da avaliação bimestral - 1º Bimestre</h1>
+    <h2>Countries</h2>
+    <!-- <ul>
+        {% for country in countries %}
+            <li><a href="{% url 'country_cities' country.country_id %}">{{ country.country_id }} - {{ country.country }}</a></li>
+        {% endfor %}
+    </ul> -->
+
+    <table border="1">
+        <thead>
+          <tr>
+            <th>Country ID</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for country in countries %}
+          <tr>
+            <td data-label="id">{{ country.country_id }}</td>
+            <td data-label="country"><a href="{% url 'country_cities' country.country_id %}">{{ country.country }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 </body>
 </html>

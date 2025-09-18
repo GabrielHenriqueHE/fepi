@@ -11,6 +11,7 @@ urlpatterns = [
     path('customers/<int:id>', views.details, name='details'),
     path('customers/<int:id>/edit', views.edit_customer, name='edit_customer'),
     path('cities/', views.cities, name='cities'),
+    path('cities/<int:id>/addresses', views.city_addresses, name='city_addresses'),
     path('cities/<int:id>/edit', views.edit_city, name='edit_city'),
     path('countries', views.countries, name='countries'),
     path('countries/filtered', views.filtered_countries, name='filtered_countries'),

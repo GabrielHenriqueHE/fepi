@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City addresses</title>
+</head>
+<body>
+    <h1>Parte da avaliação bimestral - 1º Bimestre</h1>
+    <h2>City addresses</h2>
+    <table border="1">
+        <thead>
+          <tr>
+            <th>Address ID</th>
+            <th>Address</th>
+            <th>Postal Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for address in addresses %}
+          <tr>
+            <td data-label="id">{{ address.address_id }}</td>
+            <td data-label="address">{{ address.address }}</td>
+            <td data-label="postal_code">{{ address.postal_code }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</body>
+</html>
