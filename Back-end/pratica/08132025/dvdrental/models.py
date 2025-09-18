@@ -18,7 +18,6 @@ class Actor(models.Model):
         managed = False
         db_table = 'actor'
 
-
 class Address(models.Model):
     address_id = models.AutoField(primary_key=True)
     address = models.CharField(max_length=50)
@@ -129,6 +128,9 @@ class Country(models.Model):
     country = models.CharField(max_length=50)
     last_update = models.DateTimeField()
 
+    def __str__(self) -> str:
+        return f"{self.country}"
+
     class Meta:
         managed = False
         db_table = 'country'
@@ -145,6 +147,9 @@ class Customer(models.Model):
     create_date = models.DateField()
     last_update = models.DateTimeField(blank=True, null=True)
     active = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
     class Meta:
         managed = False
