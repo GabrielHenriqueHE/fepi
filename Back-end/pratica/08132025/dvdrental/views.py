@@ -1,7 +1,8 @@
 import json
 
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 
 from django.utils import timezone
 from django.http import HttpResponse, JsonResponse
@@ -342,11 +343,13 @@ def login_user(request):
 
     return HttpResponse(template.render(request=request, context=context))
 
+@login_required(login_url="login_user")
 def logout_user(request):
     logout(request=request)
 
     return redirect('home')
 
+@login_required(login_url="login_user")
 def change_password(request):
     if request.method == "POST":
         password_form = PasswordChangeForm(request.user, request.POST)
