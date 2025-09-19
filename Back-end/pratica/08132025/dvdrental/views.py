@@ -1,5 +1,8 @@
 import json
 
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+
 from django.utils import timezone
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
@@ -300,3 +303,68 @@ def city_addresses(request, id):
     template = loader.get_template("city_addresses.html")
 
     return HttpResponse(template.render(request=request, context=context))
+
+def create_user(request):
+    if request.method == "POST":
+        user_form = UserCreationForm(request.POST)
+        if user_form.is_valid():
+            user_form.save()
+            return redirect('home')
+        
+    user_form = UserCreationForm()
+
+    context = {
+        "user_form": user_form
+    }
+
+    template = loader.get_template('user_cadastro.html')
+
+    return HttpResponse(template.render(request=request, context=context))
+
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request=request, user=user)
+            return redirect('user_authenticated')
+    
+    user_login_form = AuthenticationForm()
+
+    context = {
+        "user_login": user_login_form
+    }
+
+    template = loader.get_template('user_login.html')
+
+    return HttpResponse(template.render(request=request, context=context))
+
+def logout_user(request):
+    logout(request=request)
+
+    return redirect('home')
+
+def change_password(request):
+    if request.method == "POST":
+        password_form = PasswordChangeForm(request.user, request.POST)
+        if password_form.is_valid():
+            user = password_form.save()
+            update_session_auth_hash(request, user)
+            return redirect('home')
+        
+    password_form = PasswordChangeForm(request.user)
+
+    template = loader.get_template('user_change_password.html')
+    context = {
+        "password_form": password_form
+    }
+
+    return HttpResponse(template.render(request=request, context=context))
+
+def user_authenticated(request):
+    template = loader.get_template('user_authenticated.html')
+
+    return HttpResponse(template.render(request=request))

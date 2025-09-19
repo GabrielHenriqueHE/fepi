@@ -4,36 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Página inicial</title>
 </head>
 <body>
-    <h1>Links disponíveis</h1>
-    <ul>
-        <li><a href="{% url 'customers' %}">Customers</a></li>
-    </ul>
-    <h1>Parte da avaliação bimestral - 1º Bimestre</h1>
-    <h2>Countries</h2>
-    <!-- <ul>
-        {% for country in countries %}
-            <li><a href="{% url 'country_cities' country.country_id %}">{{ country.country_id }} - {{ country.country }}</a></li>
-        {% endfor %}
-    </ul> -->
+    <div class="container">
+      <h1>Bem-vindo à aplicação Django</h1>
+      <div class="buttons">
+        <a href="{% url 'create_user' %}"><button>Cadastrar</button></a>
+        <a href="{% url 'login_user' %}"><button>Login</button></a>
+      </div>
+    </div>
 
-    <table border="1">
-        <thead>
-          <tr>
-            <th>Country ID</th>
-            <th>Country</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for country in countries %}
-          <tr>
-            <td data-label="id">{{ country.country_id }}</td>
-            <td data-label="country"><a href="{% url 'country_cities' country.country_id %}">{{ country.country }}</a></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
 </body>
 </html>

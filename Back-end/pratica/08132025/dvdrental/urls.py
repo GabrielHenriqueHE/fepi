@@ -23,4 +23,10 @@ urlpatterns = [
     path('rentals/<int:id>', views.rental_details, name='rental_details'),
     path('rentals/<int:id>/json', views.rental_details_json, name='rental_details_json'),
     path('payment/<int:id>', views.payment, name='payment'),
+    
+    path('user/create', views.create_user, name="create_user"),
+    path('user/login', views.login_user, name="login_user"),
+    path('logout', views.logout_user, name="logout_user"),
+    path('user/change-password', views.change_password, name="change_password"),
+    path('authenticated', views.user_authenticated, name="user_authenticated")
 ]
