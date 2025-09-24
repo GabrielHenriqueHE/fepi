@@ -1,6 +1,8 @@
+from django.contrib.auth.forms import UserCreationForm
+
 from django.utils import timezone
 from django import forms
-from dvdrental.models import Customer, Category
+from dvdrental.models import Customer, Category, CustomUser
 
 class CustomerForm(forms.ModelForm):
     class Meta:
@@ -25,3 +27,8 @@ class CustomerForm(forms.ModelForm):
         model = Customer
         fields = ['first_name', 'last_name', 'email', 'address', 'activebool', 'store_id', 'create_date']
     
+class CustomUserCreationForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = UserCreationForm.Meta.fields + ('endereco', 'cidade', 'estado', 'cep')

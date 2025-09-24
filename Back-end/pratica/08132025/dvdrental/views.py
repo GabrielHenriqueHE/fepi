@@ -10,7 +10,7 @@ from django.template import loader
 from django.shortcuts import get_object_or_404, redirect, render
 
 from dvdrental.models import Address, Customer, City, Rental, Country, Category, Payment
-from dvdrental.forms import CustomerForm, CategoryForm
+from dvdrental.forms import CategoryForm, CustomUserCreationForm
 
 def customers(request):
     customers = Customer.objects.all().values()
@@ -307,12 +307,12 @@ def city_addresses(request, id):
 
 def create_user(request):
     if request.method == "POST":
-        user_form = UserCreationForm(request.POST)
+        user_form = CustomUserCreationForm(request.POST)
         if user_form.is_valid():
             user_form.save()
             return redirect('home')
         
-    user_form = UserCreationForm()
+    user_form = CustomUserCreationForm()
 
     context = {
         "user_form": user_form
