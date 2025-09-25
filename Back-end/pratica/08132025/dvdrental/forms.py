@@ -45,5 +45,8 @@ class CustomUserCreationForm(UserCreationForm):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+        for name, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'form-control description-class',
+                'placeholder': f'Entre com {str(self.Meta.labels.get(name, field.label)).lower()}'
+            })
