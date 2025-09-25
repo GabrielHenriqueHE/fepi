@@ -1,3 +1,4 @@
+from typing import Any
 from django.contrib.auth.forms import UserCreationForm
 
 from django.utils import timezone
@@ -32,3 +33,17 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = UserCreationForm.Meta.fields + ('endereco', 'cidade', 'estado', 'cep')
+        labels = {
+            'username': 'Nome de usuário',
+            'password1': 'Senha',
+            'password2': 'Confirmação de senha',
+            'endereco': 'Endereço',
+            'cidade': 'Cidade',
+            'estado': 'Estado',
+            'cep': 'CEP'
+        }
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
